@@ -2,6 +2,8 @@ import React from 'react';
 import {Linking, StyleSheet, TextStyle} from 'react-native';
 import {Text} from '../Text';
 import {Clickable, ClickableProps} from '../Clickable';
+import {useSelector} from 'react-redux';
+import {IRootState} from '../../../store/reducers';
 
 export interface LinkProps extends ClickableProps {
   /**
@@ -26,6 +28,8 @@ export const Link: React.FC<LinkProps> = ({
   style,
   color,
 }) => {
+  const colors = useSelector((state: IRootState) => state.colors);
+
   const styles = StyleSheet.create({
     link: {
       width: 'auto',
@@ -36,7 +40,7 @@ export const Link: React.FC<LinkProps> = ({
     <Clickable
       style={[styles.link, style]}
       onClick={to ? () => Linking.openURL(to) : onClick}>
-      <Text style={textStyle} color={color || '#2614c1'}>
+      <Text style={textStyle} color={color || colors.lightPrimary}>
         {children}
       </Text>
     </Clickable>

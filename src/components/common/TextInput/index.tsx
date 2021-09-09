@@ -15,6 +15,8 @@ import {
 import {heightPercentageToDP as hd} from 'react-native-responsive-screen';
 import {Text} from '../Text';
 import {Block} from '../Block';
+import {useSelector} from 'react-redux';
+import {IRootState} from '../../../store/reducers';
 
 if (Platform.OS === 'android') {
   if (UIManager.setLayoutAnimationEnabledExperimental) {
@@ -36,6 +38,8 @@ export interface TextInputProps extends TIProps {
 }
 
 export const TextInput: React.FC<TextInputProps> = props => {
+  const colors = useSelector((state: IRootState) => state.colors);
+
   const {
     onFocus,
     onBlur,
@@ -60,7 +64,7 @@ export const TextInput: React.FC<TextInputProps> = props => {
     paddingRight: iconRight ? 50 : 10,
   };
   const errorStyle: TextStyle = error
-    ? {color: '#DD4B39', borderColor: '#DD4B39'}
+    ? {color: colors.danger, borderColor: colors.danger}
     : {};
   let shapeStyle: ViewStyle = {
     borderRadius: shape === 'rounded' ? 50 : shape === 'normal' ? 15 : 15,
@@ -79,10 +83,10 @@ export const TextInput: React.FC<TextInputProps> = props => {
       borderWidth: 1.5,
       borderColor: '#C4C4C4',
       borderRadius: 5,
-      height: hd('6%'),
-      color: '#111111',
-      fontSize: hd('1.7%'),
-      fontFamily: 'Nexa-Light',
+      height: hd('6.5%'),
+      color: colors.text,
+      fontSize: hd('2%'),
+      fontFamily: 'DMSans-Regular',
       paddingHorizontal: 10,
       flex: 1,
       backgroundColor: 'transparent',
@@ -112,7 +116,7 @@ export const TextInput: React.FC<TextInputProps> = props => {
     case 'outline':
       typeStyle = {
         borderWidth: 1,
-        borderColor: '#2614c1',
+        borderColor: colors.primary,
       };
       break;
     case 'ghost':
@@ -124,7 +128,7 @@ export const TextInput: React.FC<TextInputProps> = props => {
       typeStyle = {
         borderWidth: 0,
         borderBottomWidth: 1,
-        borderColor: '#111111',
+        borderColor: colors.text,
       };
       break;
     default:
@@ -155,7 +159,7 @@ export const TextInput: React.FC<TextInputProps> = props => {
     <View style={{marginTop: active ? 5 : 0, ...containerStyle}}>
       {floatLabel && active ? (
         <Block style={{paddingLeft: 10, marginBottom: -10, zIndex: 1}}>
-          <Text size={hd('1.7%')} color="#2614c1">
+          <Text size={hd('1.7%')} color={colors.primary}>
             {placeholder}
           </Text>
         </Block>
@@ -169,7 +173,11 @@ export const TextInput: React.FC<TextInputProps> = props => {
           secureTextEntry={password}
           numberOfLines={rows}
           textBreakStrategy="highQuality"
-          placeholderTextColor={active ? 'transparent' : '#676767'}
+          placeholderTextColor={
+            active && props.value && props.value.length > 0
+              ? 'transparent'
+              : colors.grey
+          }
           editable={editable}
           style={{
             ...styles.input,
@@ -180,12 +188,12 @@ export const TextInput: React.FC<TextInputProps> = props => {
             ...typeStyle,
             ...shapeStyle,
             borderColor: active
-              ? '#2614c1'
+              ? colors.primary
               : error
-              ? '#DD4B39'
+              ? colors.danger
               : type === 'underline'
-              ? '#676767'
-              : '#2614c1',
+              ? colors.grey
+              : colors.primary,
           }}
           {...props}
         />

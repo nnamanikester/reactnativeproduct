@@ -16,8 +16,6 @@ export interface ColorsState {
   secondary: string;
   black: string;
   white: string;
-  white2: string;
-  white3: string;
   text: string;
   grey: string;
   lightGrey: string;
@@ -25,7 +23,7 @@ export interface ColorsState {
   danger: string;
   warning: string;
   success: string;
-  darkGreen: string;
+  blue: string;
 }
 
 export type ColorActionsType =

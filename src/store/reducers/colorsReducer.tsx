@@ -8,42 +8,38 @@ import {
 const dark: ColorsState = {
   background: '#FFFDFD',
   primary: '#0E69BD',
-  lightPrimary: '#5ED2EC',
+  lightPrimary: '#1B2F5DBF',
   secondary: '#93E4A9',
   black: '#001029',
   white: '#FFFFFF',
-  white2: '#FFFFFFcc',
-  white3: '#FFFFFF99',
   text: '#111111',
-  grey: '#676767',
-  lightGrey: '#C4C4C4',
-  inactive: '#E0E0E0',
-  danger: '#DD4B39',
+  grey: '#9FA5C0',
+  lightGrey: '#DADADA30',
+  inactive: '#C4C4C4',
+  danger: '#FF6868',
   warning: '#FFCB27',
   success: '#93E4A9',
-  darkGreen: '#0C9431',
+  blue: '#0014CC',
 };
 
 const light: ColorsState = {
-  background: '#FFFDFD',
-  primary: '#0E69BD',
-  lightPrimary: '#5ED2EC',
+  background: '#FFFFFF',
+  primary: '#1B2F5D',
+  lightPrimary: '#1B2F5DBF',
   secondary: '#93E4A9',
   black: '#001029',
   white: '#FFFFFF',
-  white2: '#FFFFFFcc',
-  white3: '#FFFFFF99',
   text: '#111111',
-  grey: '#676767',
-  lightGrey: '#C4C4C4',
-  inactive: '#E0E0E0',
-  danger: '#DD4B39',
+  grey: '#9FA5C0',
+  lightGrey: '#DADADA30',
+  inactive: '#C4C4C4',
+  danger: '#FF6868',
   warning: '#FFCB27',
   success: '#93E4A9',
-  darkGreen: '#0C9431',
+  blue: '#0014CC',
 };
 
-const INITIAL_STATE: ColorsState = dark;
+const INITIAL_STATE: ColorsState = light;
 
 export default (
   state = INITIAL_STATE,

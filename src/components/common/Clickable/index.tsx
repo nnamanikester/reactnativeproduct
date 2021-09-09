@@ -1,11 +1,11 @@
 import React from 'react';
-import {TouchableOpacityProps, TouchableOpacity, ViewStyle} from 'react-native';
+import {TouchableOpacityProps, TouchableOpacity} from 'react-native';
 
 export interface ClickableProps extends TouchableOpacityProps {
   /**
    * Invoked when a click event is performed.
    */
-  onClick?: () => void | undefined | Promise<void>;
+  onClick?: (() => void) | undefined | Promise<void>;
   style?: any;
 }
 

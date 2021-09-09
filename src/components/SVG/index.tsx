@@ -28,6 +28,9 @@ const SVGIcon: React.FC<SVGProps> = ({
     case 'logo':
       Icon = require('./Logo').default;
       break;
+    case 'logo-bg':
+      Icon = require('./LogoBg').default;
+      break;
     default:
       Icon = () => <UI.Text color="red">??</UI.Text>;
       break;

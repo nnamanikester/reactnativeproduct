@@ -9,6 +9,8 @@ import {
   StatusBar,
 } from 'react-native';
 import {widthPercentageToDP as wd} from 'react-native-responsive-screen';
+import {useSelector} from 'react-redux';
+import {IRootState} from '../../../store/reducers';
 
 export interface LayoutProps extends ViewProps {
   /**
@@ -38,43 +40,22 @@ export const Layout: React.FC<LayoutProps> = ({
   itemsToFloat = [],
   style = {},
   noScroll = false,
-  onEndReached = () => {},
   onRefresh = () => {},
   refreshing = false,
 }) => {
+  const colors = useSelector((state: IRootState) => state.colors);
+
   const styles = StyleSheet.create({
     container: {
       flex: 1,
-      paddingHorizontal: wd('4.5%'),
+      paddingHorizontal: wd('6%'),
       backgroundColor: '#FFFDFD',
-    },
-    fab: {
-      position: 'absolute',
-      width: '100%',
-      height: 40,
-      elevation: 5,
-      backgroundColor: `#2614c1`,
-      alignItems: 'center',
-      justifyContent: 'center',
-      bottom: 0,
     },
   });
 
-  const isCloseToBottom = ({
-    layoutMeasurement,
-    contentOffset,
-    contentSize,
-  }: any): boolean => {
-    const paddingToBottom = 0;
-    return (
-      layoutMeasurement.height + contentOffset.y >=
-      contentSize.height - paddingToBottom
-    );
-  };
-
   return (
     <>
-      <StatusBar barStyle="light-content" backgroundColor="#2614c1" />
+      <StatusBar barStyle="light-content" backgroundColor={colors.primary} />
       {noScroll ? (
         <SafeAreaView style={{flex: 1}}>
           <View style={[styles.container, style]}>{children}</View>
